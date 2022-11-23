@@ -1,0 +1,29 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Request For Passport</h1>
+ 
+  <div class="row">
+    <div class="col-sm-4 col-md-3 col-lg-3">
+      <label>Citizen Identity No.</label>
+      <input type="number" placeholder="00000-0000000-0"  required >
+    </div>
+    <div class="row" style="padding-top:2%">
+      <div class="col-sm-4 col-md-3 col-lg-3">
+        <label>Citizen First Name</label>
+        <input type="text" [disabled]="true" [(ngModel)]='firstName' required>
+      </div>
+      <div class="col-sm-4 col-md-3 col-lg-3">
+        <label>Citizen Middle Name</label>
+        <input type="text" [disabled]="true"  [(ngModel)]='middleName' required>
+      </div>
+      <div class="col-sm-4 col-md-3 col-lg-3">
+        <label>Citizen Last Name</label>
+        <input type="text" [disabled]="true" [(ngModel)]='lastName' required>
+      </div>
+  </div>
+    <button mat-raised-button style="padding:100%;" style="height:40px; width:80px;" color='primary' (click)="submit()" >Search</button>
+  </div>
+
+</div>
+<div style="padding-left:85%">
+  <button mat-raised-button color="primary" routerLink="/home">Back To Home</button>
+</div>

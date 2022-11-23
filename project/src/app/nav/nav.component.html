@@ -1,0 +1,34 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+        <a mat-list-item routerLink="/CitizenCreation" (click)="checkTrue()">Add New Citizen</a>
+      <a mat-list-item routerLink="/form1" (click)="checkTrue()">Citizen's Details Form</a>
+      <a mat-list-item routerLink="/form2" (click)="checkTrue()">Passport Requests List</a>
+      <a mat-list-item routerLink="/form3" (click)="checkTrue()">Request For Passport</a>
+      <a mat-list-item routerLink="/form4" (click)="checkTrue()">Request For Visa</a>
+      <a mat-list-item routerLink="/PassportApproval" (click)="checkTrue()">Approve Passport</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>PASSPORT AND VISA VERIFICATION</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+    <div *ngIf="check==false">
+      <app-home></app-home>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
