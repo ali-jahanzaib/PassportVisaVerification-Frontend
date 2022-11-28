@@ -1,0 +1,170 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Citizen's Details Form</h1>
+  <mat-grid-list cols="2" rowHeight="380px">
+    <mat-grid-tile
+      *ngFor="let card of cards | async"
+      [colspan]="card.cols"
+      [rowspan]="card.rows"
+    >
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ card.title }}
+            <button
+              mat-icon-button
+              class="more-button"
+              [matMenuTriggerFor]="menu"
+              aria-label="Toggle menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="row search-citizen">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Citizen CNIC/Passport No.</label>
+                <input
+                  type="string"
+                  placeholder="00000-0000000-0"
+                  [(ngModel)]="cnicPassport"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8 search-btn">
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="submit()"
+                class="btn"
+                style="padding: 100%"
+                style="height: 40px; width: 80px"
+                color="primary"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Citizen First Name</label>
+                <input
+                  type="text"
+                  [disabled]="true"
+                  [(ngModel)]="firstName"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Citizen Middle Name</label>
+                <input
+                  type="text"
+                  [disabled]="true"
+                  [(ngModel)]="middleName"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Citizen Last Name</label>
+                <input
+                  type="text"
+                  [disabled]="true"
+                  [(ngModel)]="lastName"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Citizen Full Name</label>
+                <input
+                  type="text"
+                  [disabled]="true"
+                  [(ngModel)]="fullName"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Father's Name</label>
+                <input
+                  type="text"
+                  [disabled]="true"
+                  [(ngModel)]="fathersName"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Age </label>
+                <input
+                  type="number"
+                  [disabled]="true"
+                  [(ngModel)]="Age"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>NIC NO.</label>
+                <input
+                  type="text"
+                  [disabled]="true"
+                  [(ngModel)]="NIC"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label> Passport No</label>
+                <input
+                  type="number"
+                  [disabled]="true"
+                  [(ngModel)]="passportNumber"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <!-- <div style="padding-left:63%;padding-top: 2%;">
+              <button mat-raised-button color="primary" (click)="submit()">Submit</button> --
+            </div> -->
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div style="padding-left: 85%">
+  <button mat-raised-button color="primary" routerLink="/home">
+    Back To Home
+  </button>
+</div>

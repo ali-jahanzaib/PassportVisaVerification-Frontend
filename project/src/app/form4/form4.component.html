@@ -1,0 +1,35 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Request For Visa</h1>
+
+  <div class="row" style="width: 34%">
+    <div class="col">
+      <label>Citizen Passport No.</label>
+      <input
+        class="form-control"
+        id="floatingInput"
+        type="number"
+        placeholder="00000-0000000-0"
+        required
+      />
+    </div>
+  </div>
+  
+  <div style="padding-left: 77%; display: flex">
+    <button
+      mat-raised-button
+      style="height: 40px; width: 120px; margin-right: 1%"
+      color="primary"
+      (click)="submit()"
+    >
+      Search
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      style="height: 40px; width: 120px"
+      routerLink="/home"
+    >
+      Back To Home
+    </button>
+  </div>
+</div>

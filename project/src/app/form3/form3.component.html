@@ -1,0 +1,71 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Request For Passport</h1>
+
+  <div class="row" style="width: 34%">
+    <div class="col">
+      <label>Citizen Identity No.</label>
+      <input
+        class="form-control"
+        id="floatingInput"
+        type="number"
+        placeholder="00000-0000000-0"
+        required
+      />
+    </div>
+  </div>
+  <div class="row" style="padding-top: 2%">
+    <div class="col">
+      <label>Citizen First Name</label>
+      <input
+        class="form-control"
+        id="floatingInput"
+        type="text"
+        [disabled]="true"
+        [(ngModel)]="firstName"
+        required
+      />
+    </div>
+    <div class="col">
+      <label>Citizen Middle Name</label>
+      <input
+        class="form-control"
+        id="floatingInput"
+        type="text"
+        [disabled]="true"
+        [(ngModel)]="middleName"
+        required
+      />
+    </div>
+    <div class="col">
+      <label>Citizen Last Name</label>
+      <input
+        type="text"
+        [disabled]="true"
+        [(ngModel)]="lastName"
+        required
+        class="form-control"
+        id="floatingInput"
+      />
+    </div>
+  </div>
+  <br />
+
+  <div style="padding-left: 79%; display: flex">
+    <button
+      mat-raised-button
+      style="height: 40px; width: 120px; margin-right: 1%"
+      color="primary"
+      (click)="submit()"
+    >
+      Search
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      style="height: 40px; width: 120px"
+      routerLink="/home"
+    >
+      Back To Home
+    </button>
+  </div>
+</div>
