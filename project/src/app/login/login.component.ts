@@ -2,59 +2,57 @@ import { Component, OnInit } from '@angular/core';
 //  import { AuthService } from '../_services/auth.service';
 import { CommonServiceService } from './../common-service.service';
 
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   form: any = {
     username: null,
-    password: null
+    password: null,
   };
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
-  constructor(private commonService: CommonServiceService,
-              private router : Router) { }
-  payload:any;
+  constructor(
+    private commonService: CommonServiceService,
+    private router: Router
+  ) {}
+  payload: any;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  onchange(): void {
-      
-  }
+  onchange(): void {}
   onSubmit(): void {
-
     const { username, password } = this.form;
-    
-    this.payload={
-      "username":this.form.username,
-      "password":this.form.password,
-    }
-    
-    let endpoint="http://localhost:8080/profile/auth/login" ;
+
+    this.payload = {
+      username: this.form.username,
+      password: this.form.password,
+    };
+
+    let endpoint = 'http://localhost:8080/profile/auth/login';
 
     console.log(endpoint);
     console.log(this.payload);
 
     const httpOptions = {
-      headers: new HttpHeaders({})
+      headers: new HttpHeaders({}),
     };
 
     this.commonService.postData(endpoint, this.payload, false).subscribe(
-      data => {
+      (data) => {
         console.log(data);
         localStorage.setItem('auth', JSON.stringify(data));
         var jsonResult = JSON.parse(JSON.stringify(data));
 
-        this.router.navigateByUrl('/home');        
+        this.router.navigateByUrl('/home');
       },
-      err => {
+      (err) => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
       }

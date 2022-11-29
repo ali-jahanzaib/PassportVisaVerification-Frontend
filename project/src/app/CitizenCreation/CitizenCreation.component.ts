@@ -15,15 +15,14 @@ export class CitizenCreationComponent {
   firstName:any;
   middleName:any;
   lastName:any;
+  fullName:any;
   fatherName:any;
   age:any;
   userName:any;
   payload:any;
   apiResponse:any;
-  birthPlace:any;
+  countryId:any;
   gender:any;
-  countryId: any;
-  nationality: any;
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
@@ -37,26 +36,29 @@ export class CitizenCreationComponent {
       ];
     })
   );
-  
+  // getPayload(){
+  //   this.payload={
+  //     "cnicPassport":this.cnicPassport,
+  //     "firstName":this.firstName,
+  //     "middleName":this.middleName,
+  //     "lastName":this.lastName,
+  //     "fullName":this.fullName,
+  //     "fathersName":this.fathersName,
+  //     "age":this.age,
+  //     "userName": this.userName
+  //   }
+  // }
   submit(){
     //provide your endpoint here
 
-    this.userName = this.firstName + "." + this.lastName;
-    console.log(" Country: " + this.countryId);
-    console.log(" Gender: " + this.gender);
     this.payload={
-      "identityNo":this.cnicPassport,
+      "identityNumber":this.cnicPassport,
       "firstName":this.firstName,
       "middleName":this.middleName,
       "lastName":this.lastName,
+      "fullName":this.fullName,
       "fatherName":this.fatherName,
-      "userName": this.userName,
-      "countryId":801,
-      "gender":701,
-      "nationality": this.nationality,
-      "birthPlace": this.birthPlace,
-      "userType": 1,
-      "version" : 1
+      "userName": this.userName
     }
     console.log("Payload after setting: ", this.payload);
     let endpoint="http://localhost:8080/pv/api/savePvCitizen";

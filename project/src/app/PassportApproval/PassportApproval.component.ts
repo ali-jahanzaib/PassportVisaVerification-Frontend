@@ -13,7 +13,7 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./PassportApproval.component.css']
 })
 export class PassportApprovalComponent {
-  columns=['Passport Branch Name','Citizen Name','Passport Status','Passport Type','Passport Issuance Date','Passport Expiry Date','Action']
+  columns=['Passport Branch Name','Citizen Name','Passport Status','Passport Type','Passport Issuance Date','Passport Expiry Date','Action','']
 
   rows=[
     {

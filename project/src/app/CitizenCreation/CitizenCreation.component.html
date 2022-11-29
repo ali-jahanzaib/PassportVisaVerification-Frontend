@@ -1,104 +1,138 @@
 <div class="grid-container">
   <h1 class="mat-h1">Citizen's Details Form</h1>
   <mat-grid-list cols="2" rowHeight="380px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+    <mat-grid-tile
+      *ngFor="let card of cards | async"
+      [colspan]="card.cols"
+      [rowspan]="card.rows"
+    >
       <mat-card class="dashboard-card">
-        <mat-card-header>
-         
-        </mat-card-header>
+        <mat-card-header> </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-         <div class="row search-citizen">
+          <div class="row search-citizen">
             <div class="col-sm-12 col-md-4 col-lg-4">
-                <div class="form-group">
-                    <label>Citizen CNIC</label>
-                    <input type="string" placeholder="00000-0000000-0" [(ngModel)]='cnicPassport' required class="form-control">
-                </div>
+              <div class="form-group">
+                <label>Citizen CNIC/Passport No.</label>
+                <input
+                  type="string"
+                  placeholder="00000-0000000-0"
+                  [(ngModel)]="cnicPassport"
+                  required
+                  class="form-control"
+                />
               </div>
-            
-            
+            </div>
           </div>
           <div class="row">
-              <div class="col-sm-4 col-md-4 col-lg-4">
-                  <div class="form-group">
-                    <label>Citizen First Name</label>
-                    <input type="text" [(ngModel)]='firstName' required class="form-control">
-                  </div>
-              </div>
-              <div class="col-sm-4 col-md-4 col-lg-4">
-                  <div class="form-group">
-                    <label>Citizen Middle Name</label>
-                        <input type="text"  [(ngModel)]='middleName' required class="form-control">
-                </div>
-                </div>
-              <div class="col-sm-4 col-md-4 col-lg-4">
-                  <div class="form-group">
-                    <label>Citizen Last Name</label>
-                    <input type="text"  [(ngModel)]='lastName' required class="form-control">
-                </div>
-              </div>
-          </div>
-
-          <div class='row'>
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                  <label>Father's Name</label>
-                  <input type="text"  [(ngModel)]='fatherName' required class="form-control">
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-4 col-lg-4">
-                <div class="form-group">
-                  <label>Age</label>
-                  <input type="number" [(ngModel)]='age' required class="form-control">
-                </div>
-            </div>
-            
             <div class="col-sm-4 col-md-4 col-lg-4">
               <div class="form-group">
-                <label>Gender</label>
-                <select [(ngModel)]='gender'> 
+                <label>Citizen First Name</label>
+                <input
+                  type="text"
+                  [(ngModel)]="firstName"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Citizen Middle Name</label>
+                <input
+                  type="text"
+                  [(ngModel)]="middleName"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Citizen Last Name</label>
+                <input
+                  type="text"
+                  [(ngModel)]="lastName"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Citizen Full Name</label>
+                <input
+                  type="text"
+                  [(ngModel)]="fullName"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Father's Name</label>
+                <input
+                  type="text"
+                  [(ngModel)]="fatherName"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Age </label>
+                <input
+                  type="number"
+                  [(ngModel)]="age"
+                  required
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-select">
+                <label>Country</label>
+                <select
+                  class="form-control selectpicker"
+                  [(ngModel)]="countryId"
+                >
                   <option value="None">None</option>
-                  <option value=701>Male</option>
-                  <option value=702>Female</option>
+                  <option value="801">Pakistan</option>
+                  <option value="802">United States of America</option>
                 </select>
               </div>
             </div>
-
-          </div>
-
-          <div class="row">
-            
-              <div class="col-sm-4 col-md-4 col-lg-4">
-                  <div class="form-group">
-                    <label>Country</label>
-                    <select [(ngModel)]='countryId'> 
-                      <option value="None">None</option>
-                      <option value=801>Pakistan</option>
-                      <option value=802>United States of America</option>
-                    </select>
-                  </div>
-                </div>
-
             <div class="col-sm-4 col-md-4 col-lg-4">
-              <div class="form-group">
-                <label>Nationality</label>
-                <input type="text"  [(ngModel)]='nationality' required class="form-control">
+              <div class="form-floating">
+                <label>Gender</label>
+                <select class="form-control selectpicker" [(ngModel)]="gender">
+                  <option value="None" selected>None</option>
+                  <option value="701">Male</option>
+                  <option value="702">Female</option>
+                </select>
               </div>
             </div>
-
-            <div class="col-sm-4 col-md-4 col-lg-4">
-              <div class="form-group">
-                <label>Place of Birth</label>
-                <input type="text"  [(ngModel)]='birthPlace' required class="form-control">
+            <!-- <div class="col-sm-4 col-md-4 col-lg-4"></div> -->
+            <div class="col-sm-4 col-md-4 col-lg-4" style="margin-top: 1%">
+              <div class="d-grid gap-2">
+                <button
+                  class="btn btn-primary"
+                  mat-raised-button
+                  color="primary"
+                  (click)="submit()"
+                  style="width: -webkit-fill-available; margin-left: 68.9%"
+                >
+                  Create
+                </button>
               </div>
             </div>
-
           </div>
-          
         </mat-card-content>
-        </mat-card>
+      </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
-</div>
-<div style="padding-left:90%;padding-top: 2%;">
-  <button mat-raised-button color="primary" (click)="submit()">Create</button> 
 </div>
