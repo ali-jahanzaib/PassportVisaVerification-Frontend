@@ -21,6 +21,8 @@ export class CitizenCreationComponent {
   userName:any;
   payload:any;
   apiResponse:any;
+  countryId:any;
+  gender:any;
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
