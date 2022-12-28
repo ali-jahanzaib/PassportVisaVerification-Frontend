@@ -1,11 +1,8 @@
+<app-nav></app-nav>
 <div class="grid-container">
-  <h1 class="mat-h1">Citizen's Details Form</h1>
+  <h1 class="mat-h1">Add New Citizen</h1>
   <mat-grid-list cols="2" rowHeight="380px">
-    <mat-grid-tile
-      *ngFor="let card of cards | async"
-      [colspan]="card.cols"
-      [rowspan]="card.rows"
-    >
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
         <mat-card-header> </mat-card-header>
         <mat-card-content class="dashboard-card-content">
@@ -13,13 +10,7 @@
             <div class="col-sm-12 col-md-4 col-lg-4">
               <div class="form-group">
                 <label>Citizen CNIC/Passport No.</label>
-                <input
-                  type="string"
-                  placeholder="00000-0000000-0"
-                  [(ngModel)]="cnicPassport"
-                  required
-                  class="form-control"
-                />
+                <input type="string" placeholder="00000-0000000-0" [(ngModel)]="cnicPassport" required class="form-control" />
               </div>
             </div>
           </div>
@@ -27,34 +18,19 @@
             <div class="col-sm-4 col-md-4 col-lg-4">
               <div class="form-group">
                 <label>Citizen First Name</label>
-                <input
-                  type="text"
-                  [(ngModel)]="firstName"
-                  required
-                  class="form-control"
-                />
+                <input type="text" [(ngModel)]="firstName" required class="form-control" />
               </div>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
               <div class="form-group">
                 <label>Citizen Middle Name</label>
-                <input
-                  type="text"
-                  [(ngModel)]="middleName"
-                  required
-                  class="form-control"
-                />
+                <input type="text" [(ngModel)]="middleName" required class="form-control" />
               </div>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
               <div class="form-group">
                 <label>Citizen Last Name</label>
-                <input
-                  type="text"
-                  [(ngModel)]="lastName"
-                  required
-                  class="form-control"
-                />
+                <input type="text" [(ngModel)]="lastName" required class="form-control" />
               </div>
             </div>
           </div>
@@ -62,44 +38,26 @@
             <div class="col-sm-4 col-md-4 col-lg-4">
               <div class="form-group">
                 <label>Citizen Full Name</label>
-                <input
-                  type="text"
-                  [(ngModel)]="fullName"
-                  required
-                  class="form-control"
-                />
+                <input type="text" [(ngModel)]="fullName" required class="form-control" />
               </div>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
               <div class="form-group">
                 <label>Father's Name</label>
-                <input
-                  type="text"
-                  [(ngModel)]="fatherName"
-                  required
-                  class="form-control"
-                />
+                <input type="text" [(ngModel)]="fatherName" required class="form-control" />
               </div>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
               <div class="form-group">
                 <label>Age </label>
-                <input
-                  type="number"
-                  [(ngModel)]="age"
-                  required
-                  class="form-control"
-                />
+                <input type="number" [(ngModel)]="age" required class="form-control" />
               </div>
             </div>
 
             <div class="col-sm-4 col-md-4 col-lg-4">
               <div class="form-select">
                 <label>Country</label>
-                <select
-                  class="form-control selectpicker"
-                  [(ngModel)]="countryId"
-                >
+                <select class="form-control selectpicker" [(ngModel)]="countryId">
                   <option value="None">None</option>
                   <option value="801">Pakistan</option>
                   <option value="802">United States of America</option>
@@ -119,18 +77,21 @@
             <!-- <div class="col-sm-4 col-md-4 col-lg-4"></div> -->
             <div class="col-sm-4 col-md-4 col-lg-4" style="margin-top: 1%">
               <div class="d-grid gap-2">
-                <button
-                  class="btn btn-primary"
-                  mat-raised-button
-                  color="primary"
-                  (click)="submit()"
-                  style="width: -webkit-fill-available; margin-left: 68.9%"
-                >
-                  Create
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  mat-raised-button color="primary" (click)="submit()" style="width: -webkit-fill-available; margin-left: 68.9%">
+                  Add
                 </button>
               </div>
             </div>
           </div>
+          <jw-modal id="custom-modal-1" style=" font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align:center; border-radius: 20px; 
+             background-color:#f7f7f7 !important;">
+            <h1 class="display-1" style="color:#3f51b5; font-size: xx-large"><b>Add New Citizen</b></h1>
+            <input type="text" id="disabledTextInput" class="form-control" [(ngModel)]="bodyText" 
+                  style="text-align: center; color:#000000" disabled />
+            <button class="btn btn-primary" (click)="closeModal('custom-modal-1');" data-dismiss="modal">Close</button>
+          </jw-modal>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

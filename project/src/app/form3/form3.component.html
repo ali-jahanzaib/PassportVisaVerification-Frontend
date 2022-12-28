@@ -1,71 +1,74 @@
+<app-nav></app-nav>
 <div class="grid-container">
-  <h1 class="mat-h1">Request For Passport</h1>
+  <h1 class="mat-h1">Passport Requests List</h1>
+  <mat-grid-list cols="2" rowHeight="1500px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{card.title}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="row" style="padding-top:2%">
+            <table id="customers">
+              <th *ngFor = "let column of columns">
+                {{column}}
+              </th>
+              <tr *ngFor = "let row of rows">
+                <td>{{row.name}}</td>
+                <td>{{row.identityNo}}</td>
+                <td>{{row.fatherName}}</td>
+                <td>{{row.genderValue}}</td>
+                <td>{{row.countryValue}}</td>
+                <td>{{row.passportIssued}}</td>
+                <td>
+                  <button mat-raised-button color="primary" ng-show="false"  
+                  (click)="requestForPassport(row.id)">Request</button>
+                </td>
+              </tr>
+            </table>
+          </div>
 
-  <div class="row" style="width: 34%">
-    <div class="col">
-      <label>Citizen Identity No.</label>
-      <input
-        class="form-control"
-        id="floatingInput"
-        type="number"
-        placeholder="00000-0000000-0"
-        required
-      />
-    </div>
-  </div>
-  <div class="row" style="padding-top: 2%">
-    <div class="col">
-      <label>Citizen First Name</label>
-      <input
-        class="form-control"
-        id="floatingInput"
-        type="text"
-        [disabled]="true"
-        [(ngModel)]="firstName"
-        required
-      />
-    </div>
-    <div class="col">
-      <label>Citizen Middle Name</label>
-      <input
-        class="form-control"
-        id="floatingInput"
-        type="text"
-        [disabled]="true"
-        [(ngModel)]="middleName"
-        required
-      />
-    </div>
-    <div class="col">
-      <label>Citizen Last Name</label>
-      <input
-        type="text"
-        [disabled]="true"
-        [(ngModel)]="lastName"
-        required
-        class="form-control"
-        id="floatingInput"
-      />
-    </div>
-  </div>
-  <br />
-
-  <div style="padding-left: 79%; display: flex">
-    <button
-      mat-raised-button
-      style="height: 40px; width: 120px; margin-right: 1%"
-      color="primary"
-      (click)="submit()"
-    >
-      Search
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      style="height: 40px; width: 120px"
-      routerLink="/home"
-    >
-      Back To Home
-    </button>
-  </div>
+          <jw-modal id="custom-modal-1" style=" font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align:center; border-radius: 20px; background-color: #f7f7f7 !important;">
+            <h1 class="display-1" style="color:#3f51b5; font-size: xx-large"><b>Request For Passport</b></h1>
+            <input type="text" id="disabledTextInput" class="form-control" [(ngModel)]="bodyText" 
+                  style="text-align: center; color:#000000" disabled />
+            <button class="btn btn-primary" (click)="closeModal('custom-modal-1');" data-dismiss="modal">Close</button>
+          </jw-modal>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
+<div style="padding-left:85%">
+  <button mat-raised-button color="primary" routerLink="/home">Back To Home</button>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script>
+
+            var app = angular.module("app", []);
+
+            app.controller("ctrl", function($scope){
+
+                $scope.showButton = function(passportIssued){
+                  
+                  console.log('passportIssued value in showButton method: ' + passportIssued);
+                  if (passportIssued == 'No') {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                }
+            });
+
+</script>

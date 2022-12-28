@@ -8,32 +8,38 @@ import { HttpHeaders } from '@angular/common/http';
 import { ModalService } from '../_modal';
 
 @Component({
-  selector: 'app-passportapproval',
-  templateUrl: './PassportApproval.component.html',
-  styleUrls: ['./PassportApproval.component.css']
+  selector: 'app-visaapproval',
+  templateUrl: './VisaApproval.component.html',
+  styleUrls: ['./VisaApproval.component.css']
 })
-export class PassportApprovalComponent {
-  columns=['Passport Branch Name','Citizen Name','Passport Status','Passport Type','Passport Issuance Date','Passport Expiry Date','Action','']
+export class VisaApprovalComponent {
+  columns=['Citizen Name','Foreign Visa Agency Name','Country','Visa Status','Visa Type',
+  'Visa Requested Date','Visa Issue Date','Visa Expiry Date','Visa Document','Action']
 
   rows=[
     {
-      passportBranchName : "",
+      foreignVisaAgencyName : "",
       citizenName : "",
       statusValue : "",
-      passportTypeValue : "",
+      visaTypeValue : "",
       issuanceDate : "",
       issuanceExpiry:"",
-      id:""
+      id:"",
+      createDateTime:"",
+      countryValue:"",
+      visaCountryValue:""
     }
   ]
-  passportBranchName:any;
+  foreignVisaAgencyName:any;
   citizenName:any;
   statusValue:any;
-  passportTypeValue:any;
+  visaTypeValue:any;
   issuanceDate:any;
   issuanceExpiry:any;
   payload:any;
   id:any;
+  createDateTime:any;
+  visaCountryValue:any;
   bodyText:any;
   
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -50,10 +56,10 @@ export class PassportApprovalComponent {
   );
   getPayload(){
     this.payload={
-      "passportBranchName":this.passportBranchName,
+      "foreignVisaAgencyName":this.foreignVisaAgencyName,
       "citizenName":this.citizenName,
       "statusValue":this.statusValue,
-      "passportTypeValue":this.passportTypeValue,
+      "visaTypeValue":this.visaTypeValue,
       "passportIssuanceDate":this.issuanceDate,
       "issuanceExpiry":this.issuanceExpiry,
       "id":this.id
@@ -66,32 +72,32 @@ export class PassportApprovalComponent {
   submit(){
     // this.getPayload();
     //provide your endpoint here
-    let endpoint="http://localhost:8080/pv/api/findAllPvCitizenPassport/";
+    let endpoint="http://localhost:8080/pv/api/findAllPvCitizenVisa";
 
    this.commonService.getData(endpoint).subscribe(res=>{
      var jsonResult = JSON.parse(JSON.stringify(res));
      this.rows = jsonResult;
 
      console.log(this.rows);
+     
     });;
   }
 
-  updatePassportData(id: any, status: any) {
-
-    console.log("Recieved call at updatePassportData() method : " + id);
+  updateVisaData(id: any, status: any) {
+    console.log("Recieved call at updateVisaData() method : " + id);
     console.log("Status: " + status);
 
     let params = new HttpParams();
-    params = params.append('citizenPassportId', id);
+    params = params.append('citizenVisaId', id);
     params = params.append('status', status);
 
     console.log("Http Params: " + params);
-    let endpoint="http://localhost:8080/pv/api/updatePassportData?"+params;
+    let endpoint="http://localhost:8080/pv/api/updateVisaStatus?"+params;
     
     this.commonService.postDataWithQueryParam(endpoint, params).subscribe(res=>{
       console.log(res);
 
-      this.bodyText = 'Passport status updated.'
+      this.bodyText = 'Visa status updated.'
       this.openModal('custom-modal-1');
     });;
   }

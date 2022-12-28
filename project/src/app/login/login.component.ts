@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //  import { AuthService } from '../_services/auth.service';
 import { CommonServiceService } from './../common-service.service';
-
+import { StoreServiceService } from '../services/store-service.service';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   constructor(
     private commonService: CommonServiceService,
-    private router: Router
+    private router: Router,
+    private storeService:StoreServiceService
   ) {}
   payload: any;
 
@@ -49,7 +50,8 @@ export class LoginComponent implements OnInit {
         console.log(data);
         localStorage.setItem('auth', JSON.stringify(data));
         var jsonResult = JSON.parse(JSON.stringify(data));
-
+        
+        this.storeService.setShowMenu(true)
         this.router.navigateByUrl('/home');
       },
       (err) => {

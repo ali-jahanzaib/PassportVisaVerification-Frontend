@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 <div class="grid-container">
-  <h1 class="mat-h1">Passport Requests List</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
+  <h1 class="mat-h1">Visa Approval List</h1>
+  <mat-grid-list cols="2" rowHeight="1000px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -23,17 +23,20 @@
                 {{column}}
               </th>
               <tr *ngFor = "let row of rows">
-                <td>{{row.passportBranchName}}</td>
                 <td>{{row.citizenName}}</td>
+                <td>{{row.foreignVisaAgencyName}}</td>
+                <td>{{row.visaCountryValue}}</td>
                 <td>{{row.statusValue}}</td>
-                <td>{{row.passportTypeValue}}</td>
+                <td>{{row.visaTypeValue}}</td>
+                <td>{{row.createDateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                 <td>{{row.issuanceDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                 <td>{{row.issuanceExpiry | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td></td>
                 <td>
                   <button style="margin:5px;" mat-raised-button color="primary" ng-hide=showButton(row.statusValue); 
-                          (click)="updatePassportData(row.id, 'Approved')">Approve</button>
+                          (click)="updateVisaData(row.id, 'Approved')">Approve </button> 
                   <button style="margin:5px;" mat-raised-button color="primary" ng-show=showButton(row.statusValue); 
-                          (click)="updatePassportData(row.id, 'Rejected')">Reject</button>
+                          (click)="updateVisaData(row.id, 'Rejected')">Reject</button>
                 </td>
                
               </tr>
@@ -41,7 +44,7 @@
           </div>
           <jw-modal id="custom-modal-1" style=" font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
             'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align:center; border-radius: 20px; background-color: #f7f7f7 !important;">
-            <h1 class="display-1" style="color:#3f51b5; font-size: xx-large"><b>Passport Approval</b></h1>
+            <h1 class="display-1" style="color:#3f51b5; font-size: xx-large"><b>Visa Approval</b></h1>
             <input type="text" id="disabledTextInput" class="form-control" [(ngModel)]="bodyText" 
                   style="text-align: center; color:#000000" disabled />
             <button class="btn btn-primary" (click)="closeModal('custom-modal-1');" data-dismiss="modal">Close</button>

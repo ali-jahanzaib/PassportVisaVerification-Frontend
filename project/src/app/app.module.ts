@@ -27,9 +27,11 @@ import { Form4Component } from './form4/form4.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PassportApprovalComponent } from './PassportApproval/PassportApproval.component';
-
 import { HttpHeaders } from '@angular/common/http';
 import { CitizenCreationComponent } from './CitizenCreation/CitizenCreation.component';
+import { VisaApprovalComponent } from './VisaApproval/VisaApproval.component';
+import { ModalModule } from './_modal';
+import { ImmigrationRequestComponent } from './ImmigrationRequest/ImmigrationRequest.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,9 @@ import { CitizenCreationComponent } from './CitizenCreation/CitizenCreation.comp
     RegisterComponent,
     LoginComponent,
     PassportApprovalComponent,
-    CitizenCreationComponent
+    CitizenCreationComponent,
+    VisaApprovalComponent,
+    ImmigrationRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,8 @@ import { CitizenCreationComponent } from './CitizenCreation/CitizenCreation.comp
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

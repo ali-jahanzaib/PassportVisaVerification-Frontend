@@ -10,6 +10,8 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PassportApprovalComponent } from './PassportApproval/PassportApproval.component';
 import { CitizenCreationComponent } from './CitizenCreation/CitizenCreation.component';
+import { VisaApprovalComponent } from './VisaApproval/VisaApproval.component';
+import { ImmigrationRequestComponent } from './ImmigrationRequest/ImmigrationRequest.component';
 
 const routes: Routes = [
   {
@@ -38,6 +40,12 @@ const routes: Routes = [
   },
   { 
     path:'CitizenCreation', component:CitizenCreationComponent
+  },
+  { 
+    path:'VisaApproval', component:VisaApprovalComponent
+  },
+  { 
+    path:'ImmigrationRequest', component:ImmigrationRequestComponent
   }
 ];
 

@@ -1,3 +1,4 @@
+<app-nav></app-nav>
 <div class="grid-container">
   <h1 class="mat-h1">Citizen's Details Form</h1>
   <mat-grid-list cols="2" rowHeight="380px">
@@ -158,13 +159,22 @@
               <button mat-raised-button color="primary" (click)="submit()">Submit</button> --
             </div> -->
           </div>
+
+          <jw-modal id="custom-modal-1" style=" font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align:center; border-radius: 20px; background-color: #f7f7f7 !important;">
+            <h1 class="display-1" style="color:#3f51b5; font-size: xx-large"><b>Citizen Details</b></h1>
+            <input type="text" id="disabledTextInput" class="form-control" [(ngModel)]="bodyText" 
+                  style="text-align: center; color:#000000" disabled />
+            <button class="btn btn-primary" (click)="closeModal('custom-modal-1');" data-dismiss="modal">Close</button>
+          </jw-modal>
+
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
-<div style="padding-left: 85%">
+<!-- <div style="padding-left: 85%">
   <button mat-raised-button color="primary" routerLink="/home">
     Back To Home
   </button>
-</div>
+</div> -->

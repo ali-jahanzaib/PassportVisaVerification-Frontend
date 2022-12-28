@@ -7,23 +7,41 @@ import { HttpHeaders } from '@angular/common/http';
 import { ModalService } from '../_modal';
 
 @Component({
-  selector: 'app-form1',
-  templateUrl: './form1.component.html',
-  styleUrls: ['./form1.component.css']
+  selector: 'app-immigrationrequest',
+  templateUrl: './ImmigrationRequest.component.html',
+  styleUrls: ['./ImmigrationRequest.component.css']
 })
-export class Form1Component {
+export class ImmigrationRequestComponent {
+
   cnicPassport:string="";
-  firstName:any;
-  middleName:any;
-  lastName:any;
-  fullName:any;
-  fathersName:any;
-  Age:any;
-  NIC:any;
-  passportNumber:any;
+  columns=['Citizen Name','Passport Type','Passport Status','Visa Country','Visa Status','Visa Type','Visa Expiry Date','Action']
+
+  rows=[
+    {
+      citizenName : "",
+      statusValue : "",
+      passportTypeValue : "",
+      issuanceExpiry:"",
+      id:"",
+      foreignVisaAgencyName:"",
+      visaCountryValue:"",
+      visaTypeValue:"",
+      passportStatus:"",
+      passportType:""
+    }
+  ]
+  foreignVisaAgencyName:any;
+  citizenName:any;
+  statusValue:any;
+  passportTypeValue:any;
+  issuanceDate:any;
+  issuanceExpiry:any;
   payload:any;
-  apiResponse:any;
+  id:any;
+  visaCountryValue:any;
+  visaTypeValue:any;
   bodyText:any;
+  
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
@@ -40,14 +58,6 @@ export class Form1Component {
   getPayload(){
     this.payload={
       "cnicPassport":this.cnicPassport,
-      "firstName":this.firstName,
-      "middleName":this.middleName,
-      "lastName":this.lastName,
-      "fullName":this.fullName,
-      "fathersName":this.fathersName,
-      "Age":this.Age,
-      "NIC":this.NIC,
-      "passportNumber":this.passportNumber
     }
   }
   submit(){
@@ -55,21 +65,21 @@ export class Form1Component {
     console.log(this.cnicPassport);
     //provide your endpoint here
    
-    let endpoint="http://localhost:8080/pv/api/infoByCnicPassport/" + this.cnicPassport;
+    let endpoint="http://localhost:8080/pv/api/findAllCitizenVisaByIdentityNo?identityNo=" + this.cnicPassport+"&passportNo=";
 
    this.commonService.getData(endpoint).subscribe(res=>{
-     console.log(res);
-     
-     var jsonResult = JSON.parse(JSON.stringify(res));
-     console.log(jsonResult);
-     this.firstName = jsonResult['firstName'];
-     this.middleName = jsonResult['middleName'];
-     this.lastName = jsonResult['lastName'];
-     this.fullName = this.firstName + this.middleName + this.lastName;
-     this.fathersName = jsonResult['fatherName'];
+      console.log(res);
 
-    //  this.bodyText = 'New Citizen added successfully.'
-    //  this.openModal('custom-modal-1');
+      var jsonResult = JSON.parse(JSON.stringify(res));
+      console.log(jsonResult);
+      this.rows = jsonResult;
+      
+      // this.bodyText = 'New Citizen added successfully.'
+      // this.openModal('custom-modal-1'); 
+    },
+    (err) => {
+      this.bodyText = err.error.message;
+      this.openModal('custom-modal-1');
     });;
     
   }

@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {FormControl, Validators} from '@angular/forms';
 import { HttpHeaders } from '@angular/common/http';
+import { ModalService } from '../_modal';
 
 @Component({
   selector: 'app-form2',
@@ -11,16 +12,18 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./form2.component.css']
 })
 export class Form2Component {
-  columns=['Passport Branch Name','Citizen Name','Passport Status','Passport Type','Passport Issuance Date','Passport Expiry Date']
+  columns=['Citizen Name','Passport Branch Name','Passport Status','Passport Number','Passport Type','Passport Issuance Date','Passport Expiry Date','Passport Document']
 
   rows=[
     {
-      passportBranchName : "America",
       citizenName : "Ali",
+      passportBranchName : "America",
       statusValue : "Expired",
       passportTypeValue : "VIP",
-      issuanceDate : "28-12-2020",
-      issuanceExpiry:"28-12-2030"
+      issuanceDate : "",
+      issuanceExpiry:"",
+      passportNumber:"",
+      passportFilePath:""
     }
   ]
   passportBranchName:any;
@@ -30,6 +33,8 @@ export class Form2Component {
   issuanceDate:any;
   issuanceExpiry:any;
   payload:any;
+  passportNumber:any;
+  passportFilePath:any;
   
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -59,20 +64,26 @@ export class Form2Component {
     this.submit();
   }
   submit(){
-    // this.getPayload();
+    
     //provide your endpoint here
     let endpoint="http://localhost:8080/pv/api/findAllPvCitizenPassport/";
 
    this.commonService.getData(endpoint).subscribe(res=>{
-     console.log(res);
-
+     
      var jsonResult = JSON.parse(JSON.stringify(res));
      this.rows = jsonResult;
-
      console.log(this.rows);
     });;
-    
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+      this.modalService.close(id);
   }
   constructor(private breakpointObserver: BreakpointObserver,
-    public commonService:CommonServiceService) {}
+    public commonService:CommonServiceService,
+    private modalService: ModalService) {}
 }

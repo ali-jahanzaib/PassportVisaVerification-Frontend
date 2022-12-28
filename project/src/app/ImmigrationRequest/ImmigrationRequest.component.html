@@ -1,0 +1,84 @@
+<app-nav></app-nav>
+<div class="grid-container">
+  <h1 class="mat-h1">Immigration Requests</h1>
+  <mat-grid-list cols="2" rowHeight="380px">
+    <mat-grid-tile
+      *ngFor="let card of cards | async"
+      [colspan]="card.cols"
+      [rowspan]="card.rows"
+    >
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ card.title }}
+            <button
+              mat-icon-button
+              class="more-button"
+              [matMenuTriggerFor]="menu"
+              aria-label="Toggle menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="row search-citizen">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Citizen CNIC/Passport No.</label>
+                <input type="string" placeholder="00000-0000000-0" [(ngModel)]="cnicPassport"
+                  required class="form-control" />
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-8 search-btn">
+              <button mat-raised-button color="primary" (click)="submit()"
+                class="btn" style="padding: 100%" style="height: 40px; width: 80px" color="primary">
+                Search </button>
+            </div>
+          </div>
+          
+          <div class="row" style="padding-top:2%">
+            <table id="customers">
+              <th *ngFor = "let column of columns">
+                {{column}}
+              </th>
+              <tr *ngFor = "let row of rows">
+                <td>{{row.citizenName}}</td>
+                <td>{{row.passportType}}</td>
+                <td>{{row.passportStatus}}</td>
+                <td>{{row.visaCountryValue}}</td>
+                <td>{{row.statusValue}}</td>
+                <td>{{row.visaTypeValue}}</td>
+                <td>{{row.issuanceExpiry | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>
+                  <button style="margin:5px;" mat-raised-button color="primary" ng-hide=showButton(row.statusValue);>Exit Stamp </button>
+                  <button style="margin:5px;" mat-raised-button color="primary" ng-hide=showButton(row.statusValue);>Entry Stamp</button>
+                </td>
+               
+              </tr>
+            </table>
+          </div>
+
+          <jw-modal id="custom-modal-1" style=" font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align:center; border-radius: 20px; 
+             background-color: #f7f7f7 !important;">
+            <h1 class="display-1" style="color:#3f51b5; font-size: xx-large"><b>Immigration Requests</b></h1>
+            <input type="text" id="disabledTextInput" class="form-control" [(ngModel)]="bodyText" 
+                  style="text-align: center; color:#000000" disabled />
+            <button class="btn btn-primary" (click)="closeModal('custom-modal-1');" data-dismiss="modal">Close</button>
+          </jw-modal>
+
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<!-- <div style="padding-left: 85%">
+  <button mat-raised-button color="primary" routerLink="/home">
+    Back To Home
+  </button>
+</div> -->

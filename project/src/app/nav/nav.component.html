@@ -9,7 +9,6 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
-    [hidden]="login"
   >
     <mat-toolbar style="background-color: white;place-content: space-around;">Menu</mat-toolbar> 
     <!-- border-bottom: 1px solid #3F51B5; -->
@@ -21,7 +20,7 @@
         >Citizen's Details Form</a
       >
       <a mat-list-item routerLink="/form2" (click)="checkTrue()"
-        >Passport Requests List</a
+        >Passport Status List</a
       >
       <a mat-list-item routerLink="/form3" (click)="checkTrue()"
         >Request For Passport</a
@@ -30,7 +29,13 @@
         >Request For Visa</a
       >
       <a mat-list-item routerLink="/PassportApproval" (click)="checkTrue()"
-        >Approve Passport</a
+        >Passport Approval</a
+      >
+      <a mat-list-item routerLink="/VisaApproval" (click)="checkTrue()"
+        >Visa Approval</a
+      >
+      <a mat-list-item routerLink="/ImmigrationRequest" (click)="checkTrue()"
+        >Immigration Requests</a
       >
     </mat-nav-list>
   </mat-sidenav>
@@ -46,9 +51,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <h1 class="display-1">PASSPORT AND VISA VERIFICATION</h1>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-    
+    </mat-toolbar>    
 
   </mat-sidenav-content>
 </mat-sidenav-container>

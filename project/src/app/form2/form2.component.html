@@ -1,5 +1,7 @@
+<app-nav></app-nav>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="grid-container">
-  <h1 class="mat-h1">Passport Requests List</h1>
+  <h1 class="mat-h1">Passport Status List</h1>
   <mat-grid-list cols="2" rowHeight="350px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
@@ -22,12 +24,17 @@
                 {{column}}
               </th>
               <tr *ngFor = "let row of rows">
-                <td>{{row.passportBranchName}}</td>
                 <td>{{row.citizenName}}</td>
+                <td>{{row.passportBranchName}}</td>
                 <td>{{row.statusValue}}</td>
+                <td>{{row.passportNumber}}</td>
                 <td>{{row.passportTypeValue}}</td>
-                <td>{{row.issuanceDate}}</td>
-                <td>{{row.issuanceExpiry}}</td>
+                <td>{{row.issuanceDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>{{row.issuanceExpiry | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>
+                  <!-- <i class="fa fa-file-pdf-o" style="font-size:24px;color:red"></i> -->
+                  <a href={{row.passportFilePath}} download><img alt="Download Passport"/></a>
+                </td>
               </tr>
             </table>
           </div>
@@ -36,6 +43,6 @@
     </mat-grid-tile>
   </mat-grid-list>
 </div>
-<div style="padding-left:85%">
+<!-- <div style="padding-left:85%">
   <button mat-raised-button color="primary" routerLink="/home">Back To Home</button>
-</div>
+</div> -->
