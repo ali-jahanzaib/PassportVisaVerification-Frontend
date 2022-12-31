@@ -30,7 +30,8 @@
                 <td>{{row.countryValue}}</td>
                 <td>{{row.passportIssued}}</td>
                 <td>
-                  <button mat-raised-button color="primary" ng-show="false"  
+                  <button mat-raised-button color="primary" 
+                  *ngIf="row?.passportIssued === 'No'"
                   (click)="requestForPassport(row.id)">Request</button>
                 </td>
               </tr>
@@ -57,18 +58,5 @@
         <script>
 
             var app = angular.module("app", []);
-
-            app.controller("ctrl", function($scope){
-
-                $scope.showButton = function(passportIssued){
-                  
-                  console.log('passportIssued value in showButton method: ' + passportIssued);
-                  if (passportIssued == 'No') {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                }
-            });
 
 </script>

@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 <div class="grid-container">
   <h1 class="mat-h1">Request For Visa</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
+  <mat-grid-list cols="2" rowHeight="1000px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -38,12 +38,27 @@
                       <option value="None">None</option>
                       <option value="801">Pakistan</option>
                       <option value="802">United States of America</option>
+                      <option value="803">United Kingdom</option>
                     </select>
                   </div>
                 </td>
                 <td>
-                  <button mat-raised-button color="primary" ng-hide=showButton(row.statusValue); 
-                          (click)="requestForVisa(row.pvCitizenId, this.visaCountryId)">Request</button>
+                  <div class="form-select">
+                    <select
+                      class="form-control selectpicker"
+                      [(ngModel)]="visaTypeId">
+                      <option value="None">None</option>
+                      <option value="601">Tourist Visa</option>
+                      <option value="602">Business Visa</option>
+                      <option value="603">Student Visa</option>
+                      <option value="604">Immigration Visa</option>
+                    </select>
+                
+                  </div>
+                </td>
+                <td>
+                  <button mat-raised-button color="primary" ng-show=showButton(row.statusValue); 
+                          (click)="requestForVisa(row.pvCitizenId, this.visaCountryId, this.visaTypeId)">Request</button>
                 </td>
               </tr>
             </table>
@@ -63,18 +78,14 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
         <script>
-
                    var app = angular.module("app", []);
-
                    app.controller("ctrl", function($scope){
-
                         $scope.showButton = function(status){
-                          
                           console.log('Status value in showButton method: ' + status);
                           if (status == 'Requested') {
-                            return true;
+                            $scope.showButton = false;
                           } else {
-                            return false;
+                            $scope.showButton = true;
                           }
                         }
                    });

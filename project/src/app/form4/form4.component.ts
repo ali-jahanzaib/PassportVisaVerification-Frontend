@@ -13,7 +13,7 @@ import { ModalService } from '../_modal';
   styleUrls: ['./form4.component.css']
 })
 export class Form4Component {
-  columns=['Citizen Name','Passport Branch Name','Passport Issuing Country', 'Passport Status','Passport Type','Passport Expiry Date','Visa Country','Action']
+  columns=['Citizen Name','Passport Branch Name','Passport Issuing Country', 'Passport Status','Passport Type','Passport Expiry Date','Visa Country','Visa Type','Action']
 
   rows=[
     {
@@ -27,7 +27,8 @@ export class Form4Component {
       id:"",
       createDateTime:"",
       pvCitizenId:"",
-      visaCountryId:""
+      visaCountryId:"",
+      visaTypeId:""
     }
   ]
   passportBranchName:any;
@@ -43,7 +44,8 @@ export class Form4Component {
   pvCitizenId:any;
   visaCountryId: any;
   bodyText:any;
-  
+  visaTypeId: any;
+
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
@@ -86,16 +88,17 @@ export class Form4Component {
     });;
   }
 
-  requestForVisa(id: any, visaCountryId: any) {
+  requestForVisa(id: any, visaCountryId: any, visaTypeId: any) {
 
-    console.log("Recieved call at requestForVisa() method : " + id + " | " + visaCountryId);
+    console.log("Recieved call at requestForVisa() method : " + id + " | " + visaCountryId + " | " + visaTypeId);
 
     // let params = new HttpParams();
     // params = params.append('id', id);
 
     this.payload = {
       id: id,
-      visaCountryId:visaCountryId
+      visaCountryId:visaCountryId,
+      visaTypeId:visaTypeId
     };
 
     let endpoint="http://localhost:8080/pv/api/requestForVisa";

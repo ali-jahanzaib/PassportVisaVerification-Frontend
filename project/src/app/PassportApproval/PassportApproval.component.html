@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 <div class="grid-container">
-  <h1 class="mat-h1">Passport Requests List</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
+  <h1 class="mat-h1">Passport Approval List</h1>
+  <mat-grid-list cols="2" rowHeight="1000px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
         <mat-card-header>
@@ -30,9 +30,11 @@
                 <td>{{row.issuanceDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                 <td>{{row.issuanceExpiry | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                 <td>
-                  <button style="margin:5px;" mat-raised-button color="primary" ng-hide=showButton(row.statusValue); 
+                  <button style="margin:5px;" mat-raised-button color="primary" 
+                          *ngIf="row?.statusValue === 'Requested'"
                           (click)="updatePassportData(row.id, 'Approved')">Approve</button>
-                  <button style="margin:5px;" mat-raised-button color="primary" ng-show=showButton(row.statusValue); 
+                  <button style="margin:5px;" mat-raised-button color="primary" 
+                          *ngIf="row?.statusValue === 'Requested'"
                           (click)="updatePassportData(row.id, 'Rejected')">Reject</button>
                 </td>
                
@@ -53,20 +55,6 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
         <script>
-
-                   var app = angular.module("app", []);
-
-                   app.controller("ctrl", function($scope){
-
-                        $scope.showButton = function(status){
-                          
-                          console.log('Status value in showButton method: ' + status);
-                          if (status == 'Requested') {
-                            return true;
-                          } else {
-                            return false;
-                          }
-                        }
-                   });
+        var app = angular.module("app", []);
 
         </script>

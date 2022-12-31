@@ -31,12 +31,20 @@
                 <td>{{row.createDateTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                 <td>{{row.issuanceDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                 <td>{{row.issuanceExpiry | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                <td></td>
                 <td>
-                  <button style="margin:5px;" mat-raised-button color="primary" ng-hide=showButton(row.statusValue); 
-                          (click)="updateVisaData(row.id, 'Approved')">Approve </button> 
-                  <button style="margin:5px;" mat-raised-button color="primary" ng-show=showButton(row.statusValue); 
-                          (click)="updateVisaData(row.id, 'Rejected')">Reject</button>
+                  <!-- <a *ngIf="row?.statusValue === 'Approved'"
+                   href={{row.visaFilePath}} download><img alt="Download Visa"/></a> -->
+
+                   <a *ngIf="row?.statusValue === 'Approved'" download="Downloaded Visa" target="_blank" 
+                      href={{row.visaFilePath}}> Download Passport With Visa Stamp </a>
+                </td>
+                <td>
+                  <button style="margin:3px; display:inline-block" mat-raised-button color="primary" 
+                          *ngIf="row?.statusValue === 'Requested'"
+                          (click)="updateVisaData(row.id, 'Approved', row.passportFilePath)">Approve </button> 
+                  <button style="margin:3px; display:inline-block" mat-raised-button color="primary" 
+                          *ngIf="row?.statusValue === 'Requested'"
+                          (click)="updateVisaData(row.id, 'Rejected', row.passportFilePath)">Reject</button>
                 </td>
                
               </tr>

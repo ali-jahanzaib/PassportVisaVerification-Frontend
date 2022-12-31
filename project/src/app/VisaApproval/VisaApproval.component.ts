@@ -13,8 +13,8 @@ import { ModalService } from '../_modal';
   styleUrls: ['./VisaApproval.component.css']
 })
 export class VisaApprovalComponent {
-  columns=['Citizen Name','Foreign Visa Agency Name','Country','Visa Status','Visa Type',
-  'Visa Requested Date','Visa Issue Date','Visa Expiry Date','Visa Document','Action']
+  columns=['Citizen Name','Foreign Visa Agency','Country','Visa Status','Visa Type',
+  'Visa Requested Date','Visa Issue Date','Visa Expiry Date','Document','Action']
 
   rows=[
     {
@@ -27,7 +27,9 @@ export class VisaApprovalComponent {
       id:"",
       createDateTime:"",
       countryValue:"",
-      visaCountryValue:""
+      visaCountryValue:"",
+      passportFilePath:"",
+      visaFilePath:""
     }
   ]
   foreignVisaAgencyName:any;
@@ -41,6 +43,8 @@ export class VisaApprovalComponent {
   createDateTime:any;
   visaCountryValue:any;
   bodyText:any;
+  passportFilePath:any;
+  visaFilePath:any;
   
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -62,7 +66,8 @@ export class VisaApprovalComponent {
       "visaTypeValue":this.visaTypeValue,
       "passportIssuanceDate":this.issuanceDate,
       "issuanceExpiry":this.issuanceExpiry,
-      "id":this.id
+      "id":this.id,
+      "passportFilePath":this.passportFilePath
     }
   }
 
@@ -83,13 +88,15 @@ export class VisaApprovalComponent {
     });;
   }
 
-  updateVisaData(id: any, status: any) {
+  updateVisaData(id: any, status: any, passportFilePath: any) {
     console.log("Recieved call at updateVisaData() method : " + id);
     console.log("Status: " + status);
+    console.log("Passport File Path: " + passportFilePath);
 
     let params = new HttpParams();
     params = params.append('citizenVisaId', id);
     params = params.append('status', status);
+    params = params.append('passportFilePath', passportFilePath);
 
     console.log("Http Params: " + params);
     let endpoint="http://localhost:8080/pv/api/updateVisaStatus?"+params;
@@ -97,7 +104,14 @@ export class VisaApprovalComponent {
     this.commonService.postDataWithQueryParam(endpoint, params).subscribe(res=>{
       console.log(res);
 
-      this.bodyText = 'Visa status updated.'
+      if (res == '200') {
+        this.bodyText = 'Visa approved and stamped in passport'
+      } else if (res == '404') {
+        this.bodyText = 'Passport is not found for citizen'
+      } else if (res == '403') {
+        this.bodyText = 'Visa rejected'
+      }
+      
       this.openModal('custom-modal-1');
     });;
   }

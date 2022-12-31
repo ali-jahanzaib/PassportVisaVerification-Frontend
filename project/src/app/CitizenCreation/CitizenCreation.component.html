@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 <div class="grid-container">
   <h1 class="mat-h1">Add New Citizen</h1>
-  <mat-grid-list cols="2" rowHeight="380px">
+  <mat-grid-list cols="2" rowHeight="500px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="dashboard-card">
         <mat-card-header> </mat-card-header>
@@ -9,8 +9,23 @@
           <div class="row search-citizen">
             <div class="col-sm-12 col-md-4 col-lg-4">
               <div class="form-group">
-                <label>Citizen CNIC/Passport No.</label>
-                <input type="string" placeholder="00000-0000000-0" [(ngModel)]="cnicPassport" required class="form-control" />
+                <label>Citizen CNIC</label>
+                <input type="text" placeholder="00000-0000000-0" 
+                      [(ngModel)]="cnicPassport" 
+                      required class="form-control"
+                      minlength="15"
+                      maxlength="15" />
+                
+                  <!-- <div class="alert-danger" *ngIf="cnicPassport.errors">
+                    <div *ngIf="cnicPassport.errors.required">Username is required</div>
+                    <div *ngIf="cnicPassport.errors.minlength">
+                      CNIC must be 15 characters
+                    </div>
+                    <div *ngIf="cnicPassport.errors.maxlength">
+                        CNIC must be 15 characters
+                    </div>
+                  </div> -->
+
               </div>
             </div>
           </div>
@@ -74,16 +89,34 @@
                 </select>
               </div>
             </div>
-            <!-- <div class="col-sm-4 col-md-4 col-lg-4"></div> -->
-            <div class="col-sm-4 col-md-4 col-lg-4" style="margin-top: 1%">
-              <div class="d-grid gap-2">
-                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                  mat-raised-button color="primary" (click)="submit()" style="width: -webkit-fill-available; margin-left: 68.9%">
-                  Add
-                </button>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="form-group">
+                  <label>Nationality</label>
+                  <input type="text" [(ngModel)]="nationality" required class="form-control" />
+                </div>
               </div>
+
+              <div class="col-sm-4 col-md-4 col-lg-4">
+                  <div class="form-group">
+                    <label>Place of Birth</label>
+                    <input type="text" [(ngModel)]="birthPlace" required class="form-control" />
+                  </div>
+                </div>
+
+            <!-- <div class="col-sm-4 col-md-4 col-lg-4"></div> -->
+          </div>
+
+          <div class="col-sm-4 col-md-4 col-lg-4" style="margin-top: 0%; float: right;">
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary" type="submit" 
+                      data-bs-toggle="modal" data-bs-target="#exampleModal"
+                      mat-raised-button color="primary" (click)="submit()" 
+                      style="width: -webkit-fill-available; margin-left: 68.9%">
+                Add
+              </button>
             </div>
           </div>
+
           <jw-modal id="custom-modal-1" style=" font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
             'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align:center; border-radius: 20px; 
              background-color:#f7f7f7 !important;">

@@ -12,7 +12,8 @@ import { ModalService } from '../_modal';
   styleUrls: ['./form2.component.css']
 })
 export class Form2Component {
-  columns=['Citizen Name','Passport Branch Name','Passport Status','Passport Number','Passport Type','Passport Issuance Date','Passport Expiry Date','Passport Document']
+  columns=['Citizen Name','Passport Branch Name','Passport Status','Passport Number',
+  'Passport Type','Passport Issue Date','Passport Expiry Date','Document']
 
   rows=[
     {
@@ -86,4 +87,14 @@ export class Form2Component {
   constructor(private breakpointObserver: BreakpointObserver,
     public commonService:CommonServiceService,
     private modalService: ModalService) {}
+
+    downloadMyFile(path: any){
+      const link = document.createElement('a');
+      link.setAttribute('target', '_blank');
+      link.setAttribute('href', path);
+      link.setAttribute('download', `products.csv`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+  }
 }

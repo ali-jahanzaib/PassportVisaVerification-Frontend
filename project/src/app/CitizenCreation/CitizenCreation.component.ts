@@ -12,7 +12,12 @@ import { ModalService } from '../_modal';
   styleUrls: ['./CitizenCreation.component.css']
 })
 export class CitizenCreationComponent {
-  cnicPassport:string="";
+
+  form: any = {
+    cnicPassport: null
+  };
+  
+  cnicPassport:any;
   firstName:any;
   middleName:any;
   lastName:any;
@@ -25,6 +30,8 @@ export class CitizenCreationComponent {
   countryId:any;
   gender:any;
   bodyText:any;
+  nationality:any;
+  birthPlace:any;
 
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -65,7 +72,9 @@ export class CitizenCreationComponent {
       "userType":1,
       "version":1,
       "countryId": this.countryId,
-      "gender":this.gender
+      "gender":this.gender,
+      "nationality":this.nationality,
+      "birthPlace":this.birthPlace
     }
     console.log("Payload after setting: ", this.payload);
     let endpoint="http://localhost:8080/pv/api/savePvCitizenData";

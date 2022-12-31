@@ -13,7 +13,7 @@ import { ModalService } from '../_modal';
   styleUrls: ['./PassportApproval.component.css']
 })
 export class PassportApprovalComponent {
-  columns=['Passport Branch Name','Citizen Name','Passport Status','Passport Type','Passport Issuance Date','Passport Expiry Date','Action','']
+  columns=['Passport Branch Name','Citizen Name','Passport Status','Passport Type','Passport Issuance Date','Passport Expiry Date','Action']
 
   rows=[
     {
