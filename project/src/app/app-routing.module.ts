@@ -12,6 +12,7 @@ import { PassportApprovalComponent } from './PassportApproval/PassportApproval.c
 import { CitizenCreationComponent } from './CitizenCreation/CitizenCreation.component';
 import { VisaApprovalComponent } from './VisaApproval/VisaApproval.component';
 import { ImmigrationRequestComponent } from './ImmigrationRequest/ImmigrationRequest.component';
+import { CitizenProfileComponent } from './CitizenProfile/CitizenProfile.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,9 @@ const routes: Routes = [
   },
   { 
     path:'ImmigrationRequest', component:ImmigrationRequestComponent
+  },
+  {
+    path:'CitizenProfile', component:CitizenProfileComponent
   }
 ];
 

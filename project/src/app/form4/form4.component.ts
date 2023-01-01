@@ -6,6 +6,7 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { ModalService } from '../_modal';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-form4',
@@ -78,7 +79,7 @@ export class Form4Component {
   submit(){
     // this.getPayload();
     //provide your endpoint here
-    let endpoint="http://localhost:8080/pv/api/findAllPvCitizenPassportForVisa";
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/findAllPvCitizenPassportForVisa`;
 
    this.commonService.getData(endpoint).subscribe(res=>{
      var jsonResult = JSON.parse(JSON.stringify(res));
@@ -101,7 +102,7 @@ export class Form4Component {
       visaTypeId:visaTypeId
     };
 
-    let endpoint="http://localhost:8080/pv/api/requestForVisa";
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/requestForVisa`;
     
     this.commonService.postData(endpoint, this.payload).subscribe(res=>{
       console.log(res);

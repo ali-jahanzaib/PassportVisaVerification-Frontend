@@ -5,6 +5,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { HttpHeaders } from '@angular/common/http';
 import { ModalService } from '../_modal';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-immigrationrequest',
@@ -65,7 +66,7 @@ export class ImmigrationRequestComponent {
     console.log(this.cnicPassport);
     //provide your endpoint here
    
-    let endpoint="http://localhost:8080/pv/api/findAllCitizenVisaByIdentityNo?identityNo=" + this.cnicPassport+"&passportNo=";
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/findAllCitizenVisaByIdentityNo?identityNo=` + this.cnicPassport+"&passportNo=";
 
    this.commonService.getData(endpoint).subscribe(res=>{
       console.log(res);
@@ -73,9 +74,7 @@ export class ImmigrationRequestComponent {
       var jsonResult = JSON.parse(JSON.stringify(res));
       console.log(jsonResult);
       this.rows = jsonResult;
-      
-      // this.bodyText = 'New Citizen added successfully.'
-      // this.openModal('custom-modal-1'); 
+       
     },
     (err) => {
       this.bodyText = err.error.message;

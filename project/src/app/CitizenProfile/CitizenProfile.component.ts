@@ -9,11 +9,11 @@ import Web3 from "web3";
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-citizencreation',
-  templateUrl: './CitizenCreation.component.html',
-  styleUrls: ['./CitizenCreation.component.css']
+  selector: 'app-citizenprofile',
+  templateUrl: './CitizenProfile.component.html',
+  styleUrls: ['./CitizenProfile.component.css']
 })
-export class CitizenCreationComponent implements OnInit{
+export class CitizenProfileComponent implements OnInit{
 
 
   form: any = {
@@ -39,6 +39,7 @@ export class CitizenCreationComponent implements OnInit{
   abiJson = null;
   connectedAccount = null;
   contract = null;
+  userDetails=null;
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
@@ -52,56 +53,46 @@ export class CitizenCreationComponent implements OnInit{
       ];
     })
   );
-  // getPayload(){
-  //   this.payload={
-  //     "cnicPassport":this.cnicPassport,
-  //     "firstName":this.firstName,
-  //     "middleName":this.middleName,
-  //     "lastName":this.lastName,
-  //     "fullName":this.fullName,
-  //     "fathersName":this.fathersName,
-  //     "age":this.age,
-  //     "userName": this.userName
-  //   }
-  // }
+
   async submit(){
     //provide your endpoint here
 
-    this.payload={
-      "identityNo":this.cnicPassport,
-      "firstName":this.firstName,
-      "middleName":this.middleName,
-      "lastName":this.lastName,
-      "fullName":this.fullName,
-      "fatherName":this.fatherName,
-      "userName": this.firstName + "." + this.lastName,
-      "userType":1,
-      "version":1,
-      "countryId": this.countryId,
-      "gender":this.gender,
-      "nationality":this.nationality,
-      "birthPlace":this.birthPlace,
-      "email":this.email
-    }
-    console.log("Payload after setting: ", this.payload);
+    // this.payload={
+    //   "identityNo":this.userDetails.cnicPassport,
+    //   "firstName":this.userDetails.firstName,
+    //   "middleName":this.userDetails.middleName,
+    //   "lastName":this.userDetails.lastName,
+    //   "fullName":this.userDetails.fullName,
+    //   "fatherName":this.userDetails.fatherName,
+    //   "userName": this.userDetails.firstName + "." + this.userDetails.lastName,
+    //   "userType":1,
+    //   "version":1,
+    //   "email":this.userDetails.email
+    // }
+    // console.log("Payload after setting: ", this.payload);
 
-    // await this.contract.methods
-    //   .createCitizen(
-    //     (this.firstName +
-    //     this.middleName ? " " :  "" + this.middleName +
-    //     this.lastName ? " " :  "" + this.lastName),
-    //     this.cnicPassport,
-    //     118,
-    //     203
-    //   ).send({ from: this.connectedAccount });
+    console.log("Calling contract method to create citizen: ");
+    await this.contract.methods
+      .createCitizen(
+        (this.userDetails.firstName +
+        this.userDetails.middleName ? " " :  "" + this.userDetails.middleName +
+        this.userDetails.lastName ? " " :  "" + this.userDetails.lastName),
+        this.userDetails.identityNo,
+        118,
+        203
+      ).send({ from: this.connectedAccount });
 
-    
-    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/savePvCitizenData`;
+   // updating generated user address in database
+   let endpoint=`${environment.API_ENDPOINT}/profile/updateUserAddress`;
+   this.payload = {
+     id: this.userDetails.id,
+     userAddress: this.connectedAccount
+   }
 
    this.commonService.postData(endpoint, this.payload, true).subscribe(res=>{
      console.log(res);
 
-     this.bodyText = 'New Citizen added successfully.'
+     this.bodyText = 'Citizen connected to Blockchain successfully.'
      this.openModal('custom-modal-1');
     });;
 
@@ -121,6 +112,8 @@ export class CitizenCreationComponent implements OnInit{
 
   ngOnInit(): void {
     console.log("this.loadAbi();");
+    const user_json = localStorage.getItem('auth') || '';
+    this.userDetails = JSON.parse(user_json).user;
     this.loadAbi();
   }
 

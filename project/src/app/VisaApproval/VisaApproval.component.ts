@@ -6,6 +6,7 @@ import { HttpClient,HttpParams } from '@angular/common/http';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { HttpHeaders } from '@angular/common/http';
 import { ModalService } from '../_modal';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-visaapproval',
@@ -77,7 +78,7 @@ export class VisaApprovalComponent {
   submit(){
     // this.getPayload();
     //provide your endpoint here
-    let endpoint="http://localhost:8080/pv/api/findAllPvCitizenVisa";
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/pv/api/findAllPvCitizenVisa`;
 
    this.commonService.getData(endpoint).subscribe(res=>{
      var jsonResult = JSON.parse(JSON.stringify(res));
@@ -99,7 +100,7 @@ export class VisaApprovalComponent {
     params = params.append('passportFilePath', passportFilePath);
 
     console.log("Http Params: " + params);
-    let endpoint="http://localhost:8080/pv/api/updateVisaStatus?"+params;
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/pv/api/updateVisaStatus?`+params;
     
     this.commonService.postDataWithQueryParam(endpoint, params).subscribe(res=>{
       console.log(res);
@@ -111,7 +112,6 @@ export class VisaApprovalComponent {
       } else if (res == '403') {
         this.bodyText = 'Visa rejected'
       }
-      
       this.openModal('custom-modal-1');
     });;
   }

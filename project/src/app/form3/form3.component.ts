@@ -8,6 +8,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { ModalService } from '../_modal';
 import Web3 from "web3";
 
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-form3',
   templateUrl: './form3.component.html',
@@ -61,7 +63,7 @@ export class Form3Component implements OnInit{
   async submit(){
     // this.getPayload();
     //provide your endpoint here
-    let endpoint="http://localhost:8080/pv/api/findAllPvCitizenForPassport/";
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/findAllPvCitizenForPassport/`;
 
     // await this.contract.methods
     //   .create(
@@ -90,8 +92,8 @@ export class Form3Component implements OnInit{
       id: id
     };
 
-    let endpoint="http://localhost:8080/pv/api/requestForPassport";
-
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/requestForPassport`;
+    
     this.commonService.postData(endpoint, this.payload).subscribe(res=>{
       console.log(res);
 
@@ -108,8 +110,6 @@ export class Form3Component implements OnInit{
       this.modalService.close(id);
   }
 
-
-
   constructor(private breakpointObserver: BreakpointObserver,
     public commonService:CommonServiceService,
     private modalService: ModalService) {}
@@ -118,6 +118,7 @@ export class Form3Component implements OnInit{
   ngOnInit(): void {
     console.log("this.loadAbi();");
     this.loadAbi();
+    this.submit();
   }
 
   loadAbi() {

@@ -5,6 +5,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {FormControl, Validators} from '@angular/forms';
 import { HttpHeaders } from '@angular/common/http';
 import { ModalService } from '../_modal';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-form2',
@@ -67,7 +68,7 @@ export class Form2Component {
   submit(){
     
     //provide your endpoint here
-    let endpoint="http://localhost:8080/pv/api/findAllPvCitizenPassport/";
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/findAllPvCitizenPassport/`;
 
    this.commonService.getData(endpoint).subscribe(res=>{
      

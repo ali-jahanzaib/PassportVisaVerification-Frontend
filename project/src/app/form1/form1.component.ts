@@ -6,6 +6,8 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 import { HttpHeaders } from '@angular/common/http';
 import { ModalService } from '../_modal';
 
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-form1',
   templateUrl: './form1.component.html',
@@ -55,7 +57,7 @@ export class Form1Component {
     console.log(this.cnicPassport);
     //provide your endpoint here
    
-    let endpoint="http://localhost:8080/pv/api/infoByCnicPassport/" + this.cnicPassport;
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/infoByCnicPassport/` + this.cnicPassport;
 
    this.commonService.getData(endpoint).subscribe(res=>{
      console.log(res);

@@ -6,6 +6,7 @@ import { HttpClient,HttpParams } from '@angular/common/http';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { HttpHeaders } from '@angular/common/http';
 import { ModalService } from '../_modal';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-passportapproval',
@@ -66,7 +67,7 @@ export class PassportApprovalComponent {
   submit(){
     // this.getPayload();
     //provide your endpoint here
-    let endpoint="http://localhost:8080/pv/api/findAllPvCitizenPassport/";
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/findAllPvCitizenPassport/`;
 
    this.commonService.getData(endpoint).subscribe(res=>{
      var jsonResult = JSON.parse(JSON.stringify(res));
@@ -86,7 +87,7 @@ export class PassportApprovalComponent {
     params = params.append('status', status);
 
     console.log("Http Params: " + params);
-    let endpoint="http://localhost:8080/pv/api/updatePassportData?"+params;
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/updatePassportData?`+params;
     
     this.commonService.postDataWithQueryParam(endpoint, params).subscribe(res=>{
       console.log(res);

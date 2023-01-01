@@ -32,6 +32,8 @@ import { CitizenCreationComponent } from './CitizenCreation/CitizenCreation.comp
 import { VisaApprovalComponent } from './VisaApproval/VisaApproval.component';
 import { ModalModule } from './_modal';
 import { ImmigrationRequestComponent } from './ImmigrationRequest/ImmigrationRequest.component';
+import { CitizenProfileComponent } from './CitizenProfile/CitizenProfile.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,8 @@ import { ImmigrationRequestComponent } from './ImmigrationRequest/ImmigrationReq
     PassportApprovalComponent,
     CitizenCreationComponent,
     VisaApprovalComponent,
-    ImmigrationRequestComponent
+    ImmigrationRequestComponent,
+    CitizenProfileComponent
   ],
   imports: [
     BrowserModule,

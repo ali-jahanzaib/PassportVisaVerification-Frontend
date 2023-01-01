@@ -4,6 +4,7 @@ import { CommonServiceService } from './../common-service.service';
 import { StoreServiceService } from '../services/store-service.service';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
       password: this.form.password,
     };
 
-    let endpoint = 'http://localhost:8080/profile/auth/login';
+    let endpoint = `${environment.API_ENDPOINT}/profile/auth/login`;
 
     console.log(endpoint);
     console.log(this.payload);
