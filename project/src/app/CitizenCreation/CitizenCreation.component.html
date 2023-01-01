@@ -10,12 +10,12 @@
             <div class="col-sm-12 col-md-4 col-lg-4">
               <div class="form-group">
                 <label>Citizen CNIC</label>
-                <input type="text" placeholder="00000-0000000-0" 
-                      [(ngModel)]="cnicPassport" 
+                <input type="text" placeholder="00000-0000000-0"
+                      [(ngModel)]="cnicPassport"
                       required class="form-control"
                       minlength="15"
                       maxlength="15" />
-                
+
                   <!-- <div class="alert-danger" *ngIf="cnicPassport.errors">
                     <div *ngIf="cnicPassport.errors.required">Username is required</div>
                     <div *ngIf="cnicPassport.errors.minlength">
@@ -103,25 +103,32 @@
                   </div>
                 </div>
 
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" [(ngModel)]="email" required class="form-control" />
+              </div>
+            </div>
+
             <!-- <div class="col-sm-4 col-md-4 col-lg-4"></div> -->
           </div>
 
           <div class="col-sm-4 col-md-4 col-lg-4" style="margin-top: 0%; float: right;">
             <div class="d-grid gap-2">
-              <button class="btn btn-primary" type="submit" 
+              <button class="btn btn-primary" type="submit"
                       data-bs-toggle="modal" data-bs-target="#exampleModal"
-                      mat-raised-button color="primary" (click)="submit()" 
+                      mat-raised-button color="primary" (click)="submit()"
                       style="width: -webkit-fill-available; margin-left: 68.9%">
                 Add
               </button>
             </div>
           </div>
 
-          <jw-modal id="custom-modal-1" style=" font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
-            'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align:center; border-radius: 20px; 
+          <jw-modal id="custom-modal-1" style=" font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+            'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align:center; border-radius: 20px;
              background-color:#f7f7f7 !important;">
             <h1 class="display-1" style="color:#3f51b5; font-size: xx-large"><b>Add New Citizen</b></h1>
-            <input type="text" id="disabledTextInput" class="form-control" [(ngModel)]="bodyText" 
+            <input type="text" id="disabledTextInput" class="form-control" [(ngModel)]="bodyText"
                   style="text-align: center; color:#000000" disabled />
             <button class="btn btn-primary" (click)="closeModal('custom-modal-1');" data-dismiss="modal">Close</button>
           </jw-modal>
