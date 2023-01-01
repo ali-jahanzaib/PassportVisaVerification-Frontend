@@ -13,6 +13,7 @@ import { ModalService } from '../_modal';
   styleUrls: ['./form4.component.css']
 })
 export class Form4Component {
+
   columns=['Citizen Name','Passport Branch Name','Passport Issuing Country', 'Passport Status','Passport Type','Passport Expiry Date','Visa Country','Visa Type','Action']
 
   rows=[
@@ -45,6 +46,7 @@ export class Form4Component {
   visaCountryId: any;
   bodyText:any;
   visaTypeId: any;
+  
 
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -74,6 +76,8 @@ export class Form4Component {
 
   ngOnInit(){
     this.submit();
+
+
   }
   submit(){
     // this.getPayload();
@@ -91,9 +95,6 @@ export class Form4Component {
   requestForVisa(id: any, visaCountryId: any, visaTypeId: any) {
 
     console.log("Recieved call at requestForVisa() method : " + id + " | " + visaCountryId + " | " + visaTypeId);
-
-    // let params = new HttpParams();
-    // params = params.append('id', id);
 
     this.payload = {
       id: id,

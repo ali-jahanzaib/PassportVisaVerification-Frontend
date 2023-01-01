@@ -33,7 +33,7 @@
                   <div class="form-select">
                     <select
                       class="form-control selectpicker"
-                      [(ngModel)]="visaCountryId"
+                      [(ngModel)]="row.visaCountryId"
                     >
                       <option value="None">None</option>
                       <option value="801">Pakistan</option>
@@ -46,7 +46,7 @@
                   <div class="form-select">
                     <select
                       class="form-control selectpicker"
-                      [(ngModel)]="visaTypeId">
+                      [(ngModel)]="row.visaTypeId">
                       <option value="None">None</option>
                       <option value="601">Tourist Visa</option>
                       <option value="602">Business Visa</option>
@@ -58,7 +58,7 @@
                 </td>
                 <td>
                   <button mat-raised-button color="primary" ng-show=showButton(row.statusValue); 
-                          (click)="requestForVisa(row.pvCitizenId, this.visaCountryId, this.visaTypeId)">Request</button>
+                          (click)="requestForVisa(row.pvCitizenId, row.visaCountryId, row.visaTypeId)">Request</button>
                 </td>
               </tr>
             </table>

@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 <div class="grid-container">
   <h1 class="mat-h1">Immigration Requests</h1>
-  <mat-grid-list cols="2" rowHeight="380px">
+  <mat-grid-list cols="2" rowHeight="1000px">
     <mat-grid-tile
       *ngFor="let card of cards | async"
       [colspan]="card.cols"
@@ -29,7 +29,7 @@
           <div class="row search-citizen">
             <div class="col-sm-12 col-md-4 col-lg-4">
               <div class="form-group">
-                <label>Citizen CNIC/Passport No.</label>
+                <label>Citizen CNIC</label>
                 <input type="string" placeholder="00000-0000000-0" [(ngModel)]="cnicPassport"
                   required class="form-control" />
               </div>
@@ -55,8 +55,10 @@
                 <td>{{row.visaTypeValue}}</td>
                 <td>{{row.issuanceExpiry | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                 <td>
-                  <button style="margin:5px;" mat-raised-button color="primary" ng-hide=showButton(row.statusValue);>Exit Stamp </button>
-                  <button style="margin:5px;" mat-raised-button color="primary" ng-hide=showButton(row.statusValue);>Entry Stamp</button>
+                  <button style="margin:5px;" mat-raised-button color="primary" 
+                  *ngIf="row?.statusValue === 'Approved'" >Exit Stamp </button>
+                  <button style="margin:5px;" mat-raised-button color="primary" 
+                  *ngIf="row?.statusValue === 'Approved'" >Entry Stamp</button>
                 </td>
                
               </tr>
@@ -77,8 +79,3 @@
     </mat-grid-tile>
   </mat-grid-list>
 </div>
-<!-- <div style="padding-left: 85%">
-  <button mat-raised-button color="primary" routerLink="/home">
-    Back To Home
-  </button>
-</div> -->
