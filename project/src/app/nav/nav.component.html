@@ -48,6 +48,9 @@
 
       <a mat-list-item routerLink="/PassportOfficerCreation" *ngIf="showLink(portal.passport)" (click)="checkTrue()"
       >Add new Passport Officer</a>
+
+      <a mat-list-item routerLink="/VisaAgentProfile" *ngIf="showLink(portal.visa1) || showLink(portal.visa2)" (click)="checkTrue()"
+      >Visa Agent Profile</a>
       
     </mat-nav-list>
   </mat-sidenav>
