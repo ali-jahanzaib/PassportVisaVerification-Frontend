@@ -13,36 +13,42 @@
     <mat-toolbar style="background-color: white;place-content: space-around;">Menu</mat-toolbar> 
     <!-- border-bottom: 1px solid #3F51B5; -->
     <mat-nav-list style="background-color: white; opacity: 90%;">
-      <a mat-list-item routerLink="/CitizenCreation" (click)="checkTrue()"
+      <a mat-list-item routerLink="/CitizenCreation" *ngIf="showLink(portal.passport)" (click)="checkTrue()"
         >Add New Citizen</a
       >
-      <a mat-list-item routerLink="/form1" (click)="checkTrue()"
+      <a mat-list-item routerLink="/form1" *ngIf="showLink(portal.passport)" (click)="checkTrue()"
         >Citizen's Details Form</a
       >
-      <a mat-list-item routerLink="/form2" (click)="checkTrue()"
+      <a mat-list-item routerLink="/form2" *ngIf="showLink(portal.passport)" (click)="checkTrue()"
         >Passport Status List</a
       >
-      <a mat-list-item routerLink="/form3" (click)="checkTrue()"
+      <a mat-list-item routerLink="/form3" *ngIf="showLink(portal.citizen)" (click)="checkTrue()"
         >Request For Passport</a
       >
-      <a mat-list-item routerLink="/form4" (click)="checkTrue()"
+      <a mat-list-item routerLink="/form4" *ngIf="showLink(portal.citizen)" (click)="checkTrue()"
         >Request For Visa</a
       >
-      <a mat-list-item routerLink="/PassportApproval" (click)="checkTrue()"
+      <a mat-list-item routerLink="/PassportApproval" *ngIf="showLink(portal.passport)" (click)="checkTrue()"
         >Passport Approval</a
       >
-      <a mat-list-item routerLink="/VisaApproval" (click)="checkTrue()"
+      <a mat-list-item routerLink="/VisaApproval" *ngIf="showLink(portal.visa1) || showLink(portal.visa2)" (click)="checkTrue()"
         >Visa Approval</a
       >
-      <a mat-list-item routerLink="/ImmigrationRequest" (click)="checkTrue()"
+      <a mat-list-item routerLink="/ImmigrationRequest" *ngIf="showLink(portal.immigration1) || showLink(portal.immigration2)" (click)="checkTrue()"
         >Immigration Requests</a
       >
-      <a mat-list-item routerLink="/CitizenProfile" (click)="checkTrue()"
+      <a mat-list-item routerLink="/CitizenProfile" *ngIf="showLink(portal.citizen)" (click)="checkTrue()"
         >Citizen Profile</a
       >
-      <a mat-list-item routerLink="/CitizenPassportRequest" (click)="checkTrue()"
-      >Citizen Passport Request</a
-    >
+      <a mat-list-item routerLink="/CitizenPassportRequest" *ngIf="showLink(portal.citizen)" (click)="checkTrue()"
+      >Citizen Passport Request</a>
+      
+      <a mat-list-item routerLink="/PassportOfficerProfile" *ngIf="showLink(portal.passport)" (click)="checkTrue()"
+      >Passport Officer Profile</a>
+
+      <a mat-list-item routerLink="/PassportOfficerCreation" *ngIf="showLink(portal.passport)" (click)="checkTrue()"
+      >Add new Passport Officer</a>
+      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

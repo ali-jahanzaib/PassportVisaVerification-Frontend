@@ -14,6 +14,8 @@ import { VisaApprovalComponent } from './VisaApproval/VisaApproval.component';
 import { ImmigrationRequestComponent } from './ImmigrationRequest/ImmigrationRequest.component';
 import { CitizenProfileComponent } from './CitizenProfile/CitizenProfile.component';
 import { CitizenPassportRequestComponent } from './CitizenPassportRequest/CitizenPassportRequest.component';
+import { PassportOfficerProfileComponent } from './PassportOfficerProfile/PassportOfficerProfile.component';
+import { PassportOfficerCreationComponent } from './PassportOfficerCreation/PassportOfficerCreation.component';
 
 const routes: Routes = [
   {
@@ -54,6 +56,12 @@ const routes: Routes = [
   },
   {
     path:'CitizenPassportRequest', component:CitizenPassportRequestComponent
+  },
+  {
+    path:'PassportOfficerProfile' ,component:PassportOfficerProfileComponent
+  },
+  {
+    path:'PassportOfficerCreation' ,component:PassportOfficerCreationComponent
   }
 ];
 

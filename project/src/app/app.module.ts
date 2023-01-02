@@ -34,6 +34,8 @@ import { ModalModule } from './_modal';
 import { ImmigrationRequestComponent } from './ImmigrationRequest/ImmigrationRequest.component';
 import { CitizenProfileComponent } from './CitizenProfile/CitizenProfile.component';
 import { CitizenPassportRequestComponent } from './CitizenPassportRequest/CitizenPassportRequest.component';
+import { PassportOfficerProfileComponent } from './PassportOfficerProfile/PassportOfficerProfile.component';
+import { PassportOfficerCreationComponent } from './PassportOfficerCreation/PassportOfficerCreation.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { CitizenPassportRequestComponent } from './CitizenPassportRequest/Citize
     VisaApprovalComponent,
     ImmigrationRequestComponent,
     CitizenProfileComponent,
-    CitizenPassportRequestComponent
+    CitizenPassportRequestComponent,
+    PassportOfficerProfileComponent,
+    PassportOfficerCreationComponent
   ],
   imports: [
     BrowserModule,

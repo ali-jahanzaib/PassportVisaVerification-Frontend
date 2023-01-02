@@ -78,13 +78,22 @@ export class VisaApprovalComponent {
   submit(){
     // this.getPayload();
     //provide your endpoint here
-    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/pv/api/findAllPvCitizenVisa`;
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/findAllPvCitizenVisa`;
 
    this.commonService.getData(endpoint).subscribe(res=>{
      var jsonResult = JSON.parse(JSON.stringify(res));
-     this.rows = jsonResult;
+    //  this.rows = jsonResult;
 
-     console.log(this.rows);
+    //  console.log(this.rows);
+    this.rows = [];
+     jsonResult.forEach(citizenVisaObj => {
+
+      if (citizenVisaObj.visaCountryValue == 'USA' && window.location.href.includes('4203')) {
+        this.rows.push(citizenVisaObj);
+      } else if (citizenVisaObj.visaCountryValue == 'UK' && window.location.href.includes('4204')) {
+        this.rows.push(citizenVisaObj);
+      }
+   });
      
     });;
   }
@@ -100,7 +109,7 @@ export class VisaApprovalComponent {
     params = params.append('passportFilePath', passportFilePath);
 
     console.log("Http Params: " + params);
-    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/pv/api/updateVisaStatus?`+params;
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/updateVisaStatus?`+params;
     
     this.commonService.postDataWithQueryParam(endpoint, params).subscribe(res=>{
       console.log(res);
