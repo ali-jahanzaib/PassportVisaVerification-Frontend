@@ -2,44 +2,47 @@ import { CommonServiceService } from './../common-service.service';
 import {Component, OnInit} from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { HttpClient,HttpParams } from '@angular/common/http';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { HttpHeaders } from '@angular/common/http';
 import { ModalService } from '../_modal';
 import Web3 from "web3";
+
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-citizenprofile',
-  templateUrl: './CitizenProfile.component.html',
-  styleUrls: ['./CitizenProfile.component.css']
+  selector: 'app-citizenpassportrequest',
+  templateUrl: './CitizenPassportRequest.component.html',
+  styleUrls: ['./CitizenPassportRequest.component.css']
 })
-export class CitizenProfileComponent implements OnInit{
+export class CitizenPassportRequestComponent implements OnInit{
+  columns=['Name','Identity No','Father Name','Gender','Country','Passport Requested', 'Action']
 
-
-  form: any = {
-    cnicPassport: null
-  };
-
-  cnicPassport:any;
-  firstName:any;
-  middleName:any;
-  lastName:any;
-  fullName:any;
+  rows=[
+    {
+      name : "name",
+      identityNo : "12345",
+      fatherName : "America",
+      genderValue : "gender",
+      countryValue : "12345",
+      passportIssued : "",
+      id:""
+    }
+  ]
+  name:any;
+  identityNo:any;
   fatherName:any;
-  age:any;
-  userName:any;
-  payload:any;
-  apiResponse:any;
-  countryId:any;
-  gender:any;
+  countryValue:any;
+  genderValue:any;
+  passportIssued:any;
+  payload: any;
+  id: any;
   bodyText:any;
-  nationality:any;
-  birthPlace:any;
-  email:any;
   abiJson = null;
   connectedAccount = null;
   contract = null;
-  userDetails=null;
+  userDetails = null;
+
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
@@ -54,35 +57,49 @@ export class CitizenProfileComponent implements OnInit{
     })
   );
 
+  // ngOnInit(){
+  //   this.submit();
+  // }
+
   async submit(){
+    // this.getPayload();
     //provide your endpoint here
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/findAllPvCitizenForPassport/`;
 
+   this.commonService.getData(endpoint).subscribe(res=>{
 
-    console.log("Calling contract method to create citizen: ");
-    await this.contract.methods
-      .createCitizen(
-        (this.userDetails.firstName +
-        this.userDetails.middleName ? " " :  "" + this.userDetails.middleName +
-        this.userDetails.lastName ? " " :  "" + this.userDetails.lastName),
-        this.userDetails.identityNo,
-        118,
-        203
-      ).send({ from: this.connectedAccount });
+     var jsonResult = JSON.parse(JSON.stringify(res));
 
-   // updating generated user address in database
-   let endpoint=`${environment.API_ENDPOINT}/profile/updateUserAddress`;
-   this.payload = {
-     id: this.userDetails.id,
-     userAddress: this.connectedAccount
-   }
+     this.rows = [];
+     const user_json = localStorage.getItem('auth') || '';
+     this.userDetails = JSON.parse(user_json).user;
 
-   this.commonService.postData(endpoint, this.payload, true).subscribe(res=>{
-     console.log(res);
+     jsonResult.forEach(citizenObj => {
 
-     this.bodyText = 'Citizen connected to Blockchain successfully.'
-     this.openModal('custom-modal-1');
+        if (citizenObj.identityNo == this.userDetails.identityNo) {
+          this.rows.push(citizenObj);
+        }
+     });
+     console.log(this.rows);
     });;
+  }
 
+  requestForPassport(id: any) {
+
+    console.log("Recieved call at requestForPassport() method : " + id);
+
+    this.payload = {
+      id: id
+    };
+
+    let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/requestForPassport`;
+    
+    this.commonService.postData(endpoint, this.payload).subscribe(res=>{
+      console.log(res);
+
+      this.bodyText = 'Request sent for passport successfully.'
+      this.openModal('custom-modal-1');
+    });;
   }
 
   openModal(id: string) {
@@ -97,11 +114,11 @@ export class CitizenProfileComponent implements OnInit{
     public commonService:CommonServiceService,
     private modalService: ModalService) {}
 
+
   ngOnInit(): void {
     console.log("this.loadAbi();");
-    const user_json = localStorage.getItem('auth') || '';
-    this.userDetails = JSON.parse(user_json).user;
     this.loadAbi();
+    this.submit();
   }
 
   loadAbi() {
