@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## ports
+
+portal = {
+    passport: '4201',
+    citizen: '4202',
+    visa1: '4203',
+    visa2: '4204',
+    immigration1: '4205',
+    immigration2: '4206',
+  };

@@ -22,10 +22,10 @@
       <a mat-list-item routerLink="/form2" *ngIf="showLink(portal.passport)" (click)="checkTrue()"
         >Passport Status List</a
       >
-      <a mat-list-item routerLink="/form3" *ngIf="showLink(portal.citizen)" (click)="checkTrue()"
+      <a mat-list-item routerLink="/form3" *ngIf="showLink(portal.passport)" (click)="checkTrue()"
         >Request For Passport</a
       >
-      <a mat-list-item routerLink="/form4" *ngIf="showLink(portal.citizen)" (click)="checkTrue()"
+      <a mat-list-item routerLink="/form4" *ngIf="showLink(portal.visa1) || showLink(portal.visa2)" (click)="checkTrue()"
         >Request For Visa</a
       >
       <a mat-list-item routerLink="/PassportApproval" *ngIf="showLink(portal.passport)" (click)="checkTrue()"
