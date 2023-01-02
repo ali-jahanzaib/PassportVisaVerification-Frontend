@@ -41,6 +41,7 @@ export class Form3Component implements OnInit{
   abiJson = null;
   connectedAccount = null;
   contract = null;
+  userAddress = null;
 
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -84,7 +85,7 @@ export class Form3Component implements OnInit{
     });;
   }
 
-  requestForPassport(id: any) {
+  async requestForPassport(id: any) {
 
     console.log("Recieved call at requestForPassport() method : " + id);
 
@@ -93,7 +94,7 @@ export class Form3Component implements OnInit{
     };
 
     let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/requestForPassport`;
-    
+
     this.commonService.postData(endpoint, this.payload).subscribe(res=>{
       console.log(res);
 

@@ -84,16 +84,27 @@ export class CitizenPassportRequestComponent implements OnInit{
     });;
   }
 
-  requestForPassport(id: any) {
+  async requestForPassport(id: any) {
 
     console.log("Recieved call at requestForPassport() method : " + id);
+
+    await this.contract.methods
+      .createCitizenPassport(
+        1,
+        1,
+        501,
+        0,
+        0,
+        "401",
+      )
+      .send({ from: this.connectedAccount });
 
     this.payload = {
       id: id
     };
 
     let endpoint=`${environment.API_ENDPOINT}/${environment.PORTAL}/api/requestForPassport`;
-    
+
     this.commonService.postData(endpoint, this.payload).subscribe(res=>{
       console.log(res);
 
@@ -104,7 +115,7 @@ export class CitizenPassportRequestComponent implements OnInit{
 
   openModal(id: string) {
     this.modalService.open(id);
-    
+
   }
 
   closeModal(id: string) {

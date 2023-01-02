@@ -65,7 +65,7 @@ export class PassportOfficerProfileComponent implements OnInit{
         this.userDetails.middleName ? " " :  "" + this.userDetails.middleName +
         this.userDetails.lastName ? " " :  "" + this.userDetails.lastName),
         this.userDetails.identityNo,
-        118,
+        113,
         203
       ).send({ from: this.connectedAccount });
 
