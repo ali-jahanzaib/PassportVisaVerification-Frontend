@@ -17,7 +17,8 @@ import { CitizenPassportRequestComponent } from './CitizenPassportRequest/Citize
 import { PassportOfficerProfileComponent } from './PassportOfficerProfile/PassportOfficerProfile.component';
 import { PassportOfficerCreationComponent } from './PassportOfficerCreation/PassportOfficerCreation.component';
 import { VisaAgentProfileComponent } from './VisaAgentProfile/VisaAgentProfile.component';
-import {VisaAgentCreationComponent } from './VisaAgentCreation/VisaAgentCreation.component';
+import { VisaAgentCreationComponent } from './VisaAgentCreation/VisaAgentCreation.component';
+import { CitizenVisaRequestComponent } from './CitizenVisaRequest/CitizenVisaRequest.component';
 
 const routes: Routes = [
   {
@@ -70,6 +71,9 @@ const routes: Routes = [
   },
   {
     path:'VisaAgentCreation' ,component:VisaAgentCreationComponent
+  },
+  {
+    path:'CitizenVisaRequest' ,component:CitizenVisaRequestComponent
   }
 ];
 

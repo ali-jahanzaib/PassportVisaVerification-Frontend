@@ -38,6 +38,7 @@ import { PassportOfficerProfileComponent } from './PassportOfficerProfile/Passpo
 import { PassportOfficerCreationComponent } from './PassportOfficerCreation/PassportOfficerCreation.component';
 import { VisaAgentProfileComponent } from './VisaAgentProfile/VisaAgentProfile.component';
 import { VisaAgentCreationComponent } from './VisaAgentCreation/VisaAgentCreation.component';
+import { CitizenVisaRequestComponent } from './CitizenVisaRequest/CitizenVisaRequest.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { VisaAgentCreationComponent } from './VisaAgentCreation/VisaAgentCreatio
     PassportOfficerProfileComponent,
     PassportOfficerCreationComponent,
     VisaAgentProfileComponent,
-    VisaAgentCreationComponent
+    VisaAgentCreationComponent,
+    CitizenVisaRequestComponent
   ],
   imports: [
     BrowserModule,

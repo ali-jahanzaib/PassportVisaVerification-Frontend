@@ -54,6 +54,9 @@
 
       <a mat-list-item routerLink="/VisaAgentCreation" *ngIf="showLink(portal.visa1) || showLink(portal.visa2)" (click)="checkTrue()"
       >Add new Visa Agent</a>
+
+      <a mat-list-item routerLink="/CitizenVisaRequest" *ngIf="showLink(portal.citizen)" (click)="checkTrue()"
+      >Citizen Visa Request</a>
       
     </mat-nav-list>
   </mat-sidenav>
